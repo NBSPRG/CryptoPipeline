@@ -1,0 +1,27 @@
+# Gradle/Kotlin build output
+build/
+out/
+*.class
+
+# Packaged artifacts
+*.jar
+*.war
+*.ear
+
+# Gradle local cache
+.gradle/
+
+# IDE/editor files
+.idea/
+.vscode/
+*.iml
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local assistant/runtime artifacts
+.continue/
+
+# Logs
+*.log
