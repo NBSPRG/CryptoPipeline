@@ -147,6 +147,7 @@ fun main() {
     )
 
     val sampleEvent = events.first().first
+    println("sample event: $sampleEvent")
 
     println("\n[1] Canonicalization Service")
     val canonicalBilling = canonicalizerService.canonicalize(sampleEvent, CanonicalizerType.BILLING_EVENT)
