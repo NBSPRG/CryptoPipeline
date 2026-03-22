@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.domain
 
 enum class HashType(val hash: String) {
     SHA_256("SHA-256"),

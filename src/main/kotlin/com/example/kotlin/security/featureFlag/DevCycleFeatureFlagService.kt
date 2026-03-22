@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.featureFlag
 
 import com.devcycle.sdk.server.common.model.User
 import com.devcycle.sdk.server.local.api.DVCLocalClient

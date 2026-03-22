@@ -1,4 +1,6 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.domain
+
+import com.example.kotlin.security.CryptoPayload
 
 data class Amount(
     val price: Double,

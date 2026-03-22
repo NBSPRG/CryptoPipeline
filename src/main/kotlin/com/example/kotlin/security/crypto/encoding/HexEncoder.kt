@@ -1,5 +1,7 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.EncoderType
+
 class HexEncoder: Encoder {
     override val type = EncoderType.HEX
 

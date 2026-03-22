@@ -1,5 +1,6 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.EncoderType
 import java.math.BigInteger
 
 class CustomBaseEncoder(

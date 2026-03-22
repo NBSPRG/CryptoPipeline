@@ -1,5 +1,6 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.BillingEvent
 import java.time.format.DateTimeFormatter
 
 class DefaultBillingEventCanonicalizer: BillingEventCanonicalizer {

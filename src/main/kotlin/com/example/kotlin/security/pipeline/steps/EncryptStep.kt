@@ -1,4 +1,10 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.pipeline.steps
+
+import com.example.kotlin.security.CryptoContext
+import com.example.kotlin.security.featureFlag.FeatureFlagService
+import com.example.kotlin.security.domain.Algorithm
+import com.example.kotlin.security.domain.toEncrypterType
+import com.example.kotlin.security.services.EncryptionService
 
 class EncryptStep(
     private val encryptionService: EncryptionService,

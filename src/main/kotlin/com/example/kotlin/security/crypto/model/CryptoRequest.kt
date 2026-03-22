@@ -1,5 +1,10 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.CanonicalizerType
+import com.example.kotlin.security.domain.EncoderType
+import com.example.kotlin.security.domain.EncrypterType
+import com.example.kotlin.security.domain.HashType
+
 data class CryptoRequest<T>(
     val data: T,
     val canonicalizerType: CanonicalizerType? = null,

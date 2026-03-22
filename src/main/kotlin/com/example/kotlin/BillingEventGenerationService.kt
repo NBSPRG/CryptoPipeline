@@ -1,11 +1,11 @@
 package com.example.kotlin
 
 import com.example.kotlin.security.Base64Encoder
-import com.example.kotlin.security.BillingEvent
-import com.example.kotlin.security.CompanyProduct
+import com.example.kotlin.security.domain.BillingEvent
+import com.example.kotlin.security.domain.CompanyProduct
 import com.example.kotlin.security.DefaultBillingEventCanonicalizer
-import com.example.kotlin.security.Duration
-import com.example.kotlin.security.Sha256HashGenerator
+import com.example.kotlin.security.domain.Duration
+import com.example.kotlin.security.hash.Sha256HashGenerator
 import org.springframework.stereotype.Service
 import java.util.UUID
 import kotlin.random.Random

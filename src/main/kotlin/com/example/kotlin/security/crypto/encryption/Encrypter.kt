@@ -1,5 +1,6 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.EncrypterType
 import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import java.security.PrivateKey

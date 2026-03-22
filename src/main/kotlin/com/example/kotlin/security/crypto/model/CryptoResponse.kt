@@ -1,5 +1,10 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.Algorithm
+import com.example.kotlin.security.domain.EncrypterType
+import com.example.kotlin.security.domain.HashType
+import com.example.kotlin.security.domain.toAlgorithm
+
 sealed interface CryptoResponse {
     val raw: ByteArray
     val encoded: String?

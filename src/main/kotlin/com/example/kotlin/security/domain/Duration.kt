@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.domain
 
 import java.time.LocalDate
 

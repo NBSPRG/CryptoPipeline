@@ -1,5 +1,7 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.Algorithm
+import com.example.kotlin.security.domain.KeyType
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.util.concurrent.ConcurrentHashMap

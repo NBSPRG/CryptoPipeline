@@ -1,4 +1,8 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.pipeline.steps
+
+import com.example.kotlin.security.CryptoContext
+import com.example.kotlin.security.domain.EncoderType
+import com.example.kotlin.security.services.EncoderService
 
 class DecoderStep(
     private val encoderService: EncoderService,

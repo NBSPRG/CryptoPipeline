@@ -1,5 +1,6 @@
 package com.example.kotlin.security
 
+import com.example.kotlin.security.domain.Algorithm
 import java.util.concurrent.ConcurrentHashMap
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey

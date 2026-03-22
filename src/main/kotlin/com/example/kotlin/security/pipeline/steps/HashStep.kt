@@ -1,4 +1,8 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.pipeline.steps
+
+import com.example.kotlin.security.CryptoContext
+import com.example.kotlin.security.domain.HashType
+import com.example.kotlin.security.services.HashService
 
 class HashStep(
     private val hashService: HashService,

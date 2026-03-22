@@ -1,4 +1,7 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.pipeline.steps
+
+import com.example.kotlin.security.CryptoContext
+import com.example.kotlin.security.Verifier
 
 class VerifyStep(
     private val verifier: Verifier

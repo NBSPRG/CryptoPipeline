@@ -1,17 +1,16 @@
 package com.example.kotlin
 
-import com.example.kotlin.security.Algorithm
-import com.example.kotlin.security.CanonicalizerType
-import com.example.kotlin.security.CompanyProduct
+import com.example.kotlin.security.domain.CanonicalizerType
+import com.example.kotlin.security.domain.CompanyProduct
 import com.example.kotlin.security.CryptoRequest
-import com.example.kotlin.security.CryptoService
-import com.example.kotlin.security.Duration
-import com.example.kotlin.security.EncoderType
-import com.example.kotlin.security.EncrypterType
-import com.example.kotlin.security.FeatureFlagService
-import com.example.kotlin.security.HashType
-import com.example.kotlin.security.LineCode
-import com.example.kotlin.security.PipelineExecutor
+import com.example.kotlin.security.services.CryptoService
+import com.example.kotlin.security.domain.Duration
+import com.example.kotlin.security.domain.EncoderType
+import com.example.kotlin.security.domain.EncrypterType
+import com.example.kotlin.security.featureFlag.FeatureFlagService
+import com.example.kotlin.security.domain.HashType
+import com.example.kotlin.security.domain.LineCode
+import com.example.kotlin.security.pipeline.PipelineExecutor
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -27,9 +26,9 @@ class CryptoController(
     private val billingEventGenerationService: BillingEventGenerationService,
     private val cryptoService: CryptoService,
     private val featureFlagService: FeatureFlagService,
-    @Qualifier("staticPipelineExecutor")
+    @param:Qualifier("staticPipelineExecutor")
     private val staticPipelineExecutor: PipelineExecutor,
-    @Qualifier("dynamicPipelineExecutor")
+    @param:Qualifier("dynamicPipelineExecutor")
     private val dynamicPipelineExecutor: PipelineExecutor
 ) {
 

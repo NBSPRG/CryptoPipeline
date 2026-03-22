@@ -1,4 +1,9 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.services
+
+import com.example.kotlin.security.Canonicalizer
+import com.example.kotlin.security.CryptoPayload
+import com.example.kotlin.security.domain.CanonicalizerType
+import com.example.kotlin.security.factory.CanonicalizerFactory
 
 class CanonicalizerService(
     private val canonicalizerFactory: CanonicalizerFactory

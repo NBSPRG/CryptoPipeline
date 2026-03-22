@@ -1,4 +1,7 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.services
+
+import com.example.kotlin.security.domain.EncoderType
+import com.example.kotlin.security.factory.EncoderFactory
 
 class EncoderService(
     private val factory: EncoderFactory

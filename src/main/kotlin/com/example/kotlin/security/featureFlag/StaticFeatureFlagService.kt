@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.featureFlag
 
 class StaticFeatureFlagService : FeatureFlagService {
     override val source: String = "StaticFallback"

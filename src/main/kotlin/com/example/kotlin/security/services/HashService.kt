@@ -1,4 +1,7 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.services
+
+import com.example.kotlin.security.HashFactory
+import com.example.kotlin.security.domain.HashType
 
 class HashService(
     private val hashFactory: HashFactory

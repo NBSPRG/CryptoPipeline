@@ -1,3 +1,4 @@
 {
-    "devcycle-feature-flags.sendMetrics": true
+    "devcycle-feature-flags.sendMetrics": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 }

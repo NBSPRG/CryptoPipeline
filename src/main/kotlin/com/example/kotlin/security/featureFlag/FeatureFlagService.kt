@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.featureFlag
 
 interface FeatureFlagService {
     val source: String

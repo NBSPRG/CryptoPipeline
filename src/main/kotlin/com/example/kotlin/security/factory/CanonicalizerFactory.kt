@@ -1,4 +1,7 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.factory
+
+import com.example.kotlin.security.Canonicalizer
+import com.example.kotlin.security.domain.CanonicalizerType
 
 class CanonicalizerFactory(
     canonicalizer: List<Canonicalizer<*>>

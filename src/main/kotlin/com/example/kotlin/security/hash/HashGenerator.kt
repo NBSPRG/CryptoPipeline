@@ -1,5 +1,6 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.hash
 
+import com.example.kotlin.security.domain.HashType
 import java.security.MessageDigest
 
 abstract class HashGenerator(

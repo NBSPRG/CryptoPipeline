@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.domain
 
 enum class EncoderType(val encoder: String) {
     BASE64("BASE64"),

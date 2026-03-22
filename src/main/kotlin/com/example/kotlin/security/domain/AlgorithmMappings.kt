@@ -1,4 +1,4 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.domain
 
 fun EncrypterType.toAlgorithm(): Algorithm {
     return when (this) {

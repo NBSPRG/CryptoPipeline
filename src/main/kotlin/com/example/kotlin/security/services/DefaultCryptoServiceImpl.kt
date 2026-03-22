@@ -1,4 +1,10 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.services
+
+import com.example.kotlin.security.CryptoRequest
+import com.example.kotlin.security.EncryptResponse
+import com.example.kotlin.security.HashResponse
+import com.example.kotlin.security.SignResponse
+import com.example.kotlin.security.domain.toAlgorithm
 
 class DefaultCryptoService(
     private val hashService: HashService,

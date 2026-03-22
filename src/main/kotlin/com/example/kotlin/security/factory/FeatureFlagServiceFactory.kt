@@ -1,22 +1,26 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.factory
 
 import com.devcycle.sdk.server.common.model.User
 import com.devcycle.sdk.server.local.api.DVCLocalClient
 import com.devcycle.sdk.server.local.model.DVCLocalOptions
+import com.example.kotlin.security.featureFlag.DevCycleFeatureFlagService
+import com.example.kotlin.security.FeatureFlagConfig
+import com.example.kotlin.security.featureFlag.FeatureFlagService
+import com.example.kotlin.security.featureFlag.StaticFeatureFlagService
 
 object FeatureFlagServiceFactory {
-    private const val serverSdkKeyEnv = "SERVER_KEY"
-    private const val userIdEnv = "USER_ID"
-    private const val defaultUserId = "crypto-pipeline-service"
-    private const val configFileName = "config.yml"
-    private const val initTimeoutMs = 10_000L
-    private const val initPollIntervalMs = 100L
+    private const val SERVER_SDK_KEY_ENV = "SERVER_KEY"
+    private const val USER_ID_ENV = "USER_ID"
+    private const val DEFAULT_USER_ID = "crypto-pipeline-service"
+    private const val CONFIG_FILE_NAME = "config.yml"
+    private const val INIT_TIMEOUT_MS = 10_000L
+    private const val INIT_POLL_INTERVAL_TIME_MS = 100L
 
     fun create(): FeatureFlagService {
-        val resolvedConfig = FeatureFlagConfig.resolve(
-            resourceName = configFileName,
-            serverKeyEnv = serverSdkKeyEnv,
-            userIdEnv = userIdEnv
+        val resolvedConfig = FeatureFlagConfig.Companion.resolve(
+            resourceName = CONFIG_FILE_NAME,
+            serverKeyEnv = SERVER_SDK_KEY_ENV,
+            userIdEnv = USER_ID_ENV
         )
         if (resolvedConfig == null) {
             return StaticFeatureFlagService()
@@ -29,16 +33,16 @@ object FeatureFlagServiceFactory {
         )
         waitForInitialization(client)
         val user = User.builder()
-            .userId(resolvedConfig.userId ?: defaultUserId)
+            .userId(resolvedConfig.userId ?: DEFAULT_USER_ID)
             .build()
 
         return DevCycleFeatureFlagService(client, user)
     }
 
     private fun waitForInitialization(client: DVCLocalClient) {
-        val deadline = System.currentTimeMillis() + initTimeoutMs
-        while (!client.isInitialized() && System.currentTimeMillis() < deadline) {
-            Thread.sleep(initPollIntervalMs)
+        val deadline = System.currentTimeMillis() + INIT_TIMEOUT_MS
+        while (!client.isInitialized && System.currentTimeMillis() < deadline) {
+            Thread.sleep(INIT_POLL_INTERVAL_TIME_MS)
         }
     }
 }

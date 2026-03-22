@@ -1,4 +1,8 @@
-package com.example.kotlin.security
+package com.example.kotlin.security.services
+
+import com.example.kotlin.security.Signer
+import com.example.kotlin.security.domain.Algorithm
+import com.example.kotlin.security.domain.KeyType
 
 class SignatureService(
     private val signer: Signer
