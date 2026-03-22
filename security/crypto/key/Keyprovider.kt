@@ -1,3 +1,3 @@
 interface KeyProvider<K> {
-    fun getKey(algorithm: Algorithm): K
+    fun getOrCreate(algorithm: Algorithm): K
 }

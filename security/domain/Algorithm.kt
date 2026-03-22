@@ -1,10 +1,11 @@
 enum class Algorithm(
-    val algorithmName: String,
-    val type: KeyType
+    val keyType: KeyType,
+    val transformation: String,
+    val keySize: Int
 ) {
-    AES("Aes", KeyType.SYMMETRIC),
-    DES("Des", KeyType.SYMMETRIC),
-    RSA("Rsa", KeyType.ASYMMETRIC),
-    DESede("Desede", KeyType.SYMMETRIC),
-    ECDSA("Ecdsa", KeyType.ASYMMETRIC)
+    AES(KeyType.SYMMETRIC, "AES", 256),
+    DES(KeyType.SYMMETRIC, "DES", 56),
+    RSA(KeyType.ASYMMETRIC, "RSA", 2048),
+    DESede(KeyType.SYMMETRIC, "DESede", 168),
+    ECDSA(KeyType.ASYMMETRIC, "EC", 256)
 }

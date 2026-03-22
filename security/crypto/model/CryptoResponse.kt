@@ -28,7 +28,7 @@ data class HashResponse(
 data class SignResponse(
     override val raw: ByteArray,
     override val encoded: String?,
-    val signatureAlgorithm: EncrypterType,
+    val signatureAlgorithm: Algorithm,
     val keyId: String?,
     override val version: Int,
     override val metadata: Map<String, Any>
@@ -38,7 +38,7 @@ data class SignResponse(
             return SignResponse(
                 raw = requireNotNull(context.signature) { "Signature result is missing from crypto context" },
                 encoded = context.encoded,
-                signatureAlgorithm = request.encrypterType,
+                signatureAlgorithm = Algorithm.valueOf(request.encrypterType.name),
                 keyId = request.keyId,
                 version = request.version,
                 metadata = request.metadata

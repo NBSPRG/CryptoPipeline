@@ -1,3 +1,3 @@
 import java.security.PublicKey
 
-interface PublicKeyProvider: KeyProvider<PublicKey>
+interface PublicKeyProvider : KeyProvider<PublicKey>

@@ -1,7 +1,7 @@
 class SignatureService(
     private val signer: Signer
 ) {
-    fun sign(document: ByteArray, type: EncrypterType): ByteArray {
+    fun sign(document: ByteArray, type: Algorithm): ByteArray {
         require(type.keyType == KeyType.ASYMMETRIC) {
             "Signature is only supported with asymmetric algorithms"
         }

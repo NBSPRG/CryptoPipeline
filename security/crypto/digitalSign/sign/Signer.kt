@@ -1,4 +1,4 @@
 interface Signer {
-    val type: EncrypterType
+    val type: Algorithm
     fun sign(payload: ByteArray): ByteArray
 }

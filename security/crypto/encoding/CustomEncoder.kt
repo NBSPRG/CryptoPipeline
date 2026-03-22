@@ -32,12 +32,17 @@ class CustomBaseEncoder(
 
         for (char in string) {
             val index = alphabet.indexOf(char)
-            require(index >= 0) { "Character '$char' is not part of the custom alphabet" }
+            require(index >= 0)
+                { "Character $char is not part of custom alphabet "}
+            
             number = number.multiply(base).add(BigInteger.valueOf(index.toLong()))
         }
 
         val bytes = number.toByteArray()
-        return if (bytes.size > 1 && bytes.first() == 0.toByte()) {
+        return if(
+            bytes.size > 1 &&
+            bytes.first() == 0.toByte()
+        ) {
             bytes.copyOfRange(1, bytes.size)
         } else {
             bytes

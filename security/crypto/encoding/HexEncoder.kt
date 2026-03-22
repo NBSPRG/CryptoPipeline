@@ -12,9 +12,10 @@ class HexEncoder: Encoder {
     }
 
     override fun decode(string: String): ByteArray {
-        require(string.length % 2 == 0) { "Hex input must contain an even number of characters" }
+        require(string.length % 2 == 0) 
+            { "Hex input must contain even number of characters "}
         return string.chunked(2)
-            .map { it.toInt(16).toByte() }
+            .map{ it.toInt(16).toByte() }
             .toByteArray()
     }
 }

@@ -1,5 +1,6 @@
 import java.time.LocalDate
 import java.security.KeyPairGenerator
+import java.security.PublicKey
 import java.security.PrivateKey
 import java.util.UUID
 import kotlin.random.Random
@@ -94,7 +95,7 @@ fun main() {
             DESedeEncrypter()
         )
     )
-    val encryptionService = EncryptionService(encryptionFactory)
+    val secretKeyProvider = DefaultSecretKeyProvider()
 
     val encoderFactory = EncoderFactory(
         listOf(
@@ -105,17 +106,31 @@ fun main() {
     )
     val encoderService = EncoderService(encoderFactory)
 
-    val privateKeyProvider = object : PrivateKeyProvider {
-        private val rsaKeyPair = KeyPairGenerator.getInstance("RSA").run {
-            initialize(2048)
-            generateKeyPair()
-        }
+    val rsaKeyPair = KeyPairGenerator.getInstance("RSA").run {
+        initialize(2048)
+        generateKeyPair()
+    }
 
-        override fun getKey(algorithm: Algorithm): PrivateKey {
+    val privateKeyProvider = object : PrivateKeyProvider {
+        override fun getOrCreate(algorithm: Algorithm): PrivateKey {
             require(algorithm == Algorithm.RSA) { "Only RSA is supported by this test provider" }
             return rsaKeyPair.private
         }
     }
+
+    val publicKeyProvider = object : PublicKeyProvider {
+        override fun getOrCreate(algorithm: Algorithm): PublicKey {
+            require(algorithm == Algorithm.RSA) { "Only RSA is supported by this test provider" }
+            return rsaKeyPair.public
+        }
+    }
+
+    val encryptionService = EncryptionService(
+        encryptionFactory = encryptionFactory,
+        secretKeyProvider = secretKeyProvider,
+        publicKeyProvider = publicKeyProvider,
+        privateKeyProvider = privateKeyProvider
+    )
 
     val signer = RSASigner(privateKeyProvider)
     val signatureService = SignatureService(signer)
@@ -161,7 +176,7 @@ fun main() {
     println("SHA-256 (base64): $hashEncoded")
 
     println("\n[3] Signature Service")
-    val signed = signatureService.sign(hashBytes, EncrypterType.RSA)
+    val signed = signatureService.sign(hashBytes, Algorithm.RSA)
     val signedEncoded = encoderService.encode(signed, EncoderType.BASE64)
     println("RSA signature (base64): $signedEncoded")
 
