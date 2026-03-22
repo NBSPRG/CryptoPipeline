@@ -3,7 +3,8 @@ class CanonicalizeStep(
     private val canonicalizerType: CanonicalizerType
 ): CryptoStep {
     override fun process(context: CryptoContext): CryptoContext {
-        context.canonicalData = canonicalizer.canonicalize(context.rawData)
-        return context
+        return context.copy(
+            canonicalData = canonicalizerService.canonicalize(context.rawData, canonicalizerType)
+        )
     }
 }

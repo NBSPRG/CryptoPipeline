@@ -1,7 +1,7 @@
 sealed interface CryptoResponse {
-    val raw: ByteArray,
-    val encoded: String?,
-    val version: Int,
+    val raw: ByteArray
+    val encoded: String?
+    val version: Int
     val metadata: Map<String, Any>
 }
 
@@ -12,14 +12,16 @@ data class HashResponse(
     override val version: Int,
     override val metadata: Map<String, Any>
 ): CryptoResponse {
-    companion object from(context: CryptoContext, request: CryptoRequest<T>): HashResponse {
-        return HashResponse(
-            raw = context.hash,
-            encoded = context.encoded,
-            hashAlgorithm = request.hashType,
-            version = request.version,
-            metadata = request.metadata
-        )
+    companion object {
+        fun <T> from(context: CryptoContext, request: CryptoRequest<T>): HashResponse {
+            return HashResponse(
+                raw = requireNotNull(context.hash) { "Hash result is missing from crypto context" },
+                encoded = context.encoded,
+                hashAlgorithm = request.hashType,
+                version = request.version,
+                metadata = request.metadata
+            )
+        }
     }
 }
 
@@ -31,15 +33,17 @@ data class SignResponse(
     override val version: Int,
     override val metadata: Map<String, Any>
 ): CryptoResponse {
-    companion object from(context: CryptoContext, request: CryptoRequest<T>): SignResponse {
-        return SignResponse(
-            raw = context.signature,
-            encoded = context.encoded,
-            signatureAlgorithm = request.encrypterType,
-            keyId = request.keyId,
-            version = request.version,
-            metadata = request.metadata
-        )
+    companion object {
+        fun <T> from(context: CryptoContext, request: CryptoRequest<T>): SignResponse {
+            return SignResponse(
+                raw = requireNotNull(context.signature) { "Signature result is missing from crypto context" },
+                encoded = context.encoded,
+                signatureAlgorithm = request.encrypterType,
+                keyId = request.keyId,
+                version = request.version,
+                metadata = request.metadata
+            )
+        }
     }
 }
 
@@ -51,14 +55,16 @@ data class EncryptResponse(
     override val version: Int,
     override val metadata: Map<String, Any>
 ): CryptoResponse {
-    companion object from(context: CryptoContext, request: CryptoRequest<T>): EncryptResponse {
-        return EncryptResponse(
-            raw = context.encrypted,
-            encoded = context.encoded,
-            encryptionAlgorithm = request.encrypterType,
-            iv = request.iv,
-            version = request.version,
-            metadata = request.metadata
-        )
+    companion object {
+        fun <T> from(context: CryptoContext, request: CryptoRequest<T>): EncryptResponse {
+            return EncryptResponse(
+                raw = requireNotNull(context.encrypted) { "Encrypted result is missing from crypto context" },
+                encoded = context.encoded,
+                encryptionAlgorithm = request.encrypterType,
+                iv = request.iv,
+                version = request.version,
+                metadata = request.metadata
+            )
+        }
     }
 }

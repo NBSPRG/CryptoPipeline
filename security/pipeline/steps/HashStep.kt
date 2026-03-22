@@ -1,9 +1,9 @@
 class HashStep(
     private val hashService: HashService,
     private val hashType: HashType
-): CryptoContext {
+): CryptoStep {
     override fun process(context: CryptoContext): CryptoContext {
-        context.hash = hashService.hash(context.rawData, hashType)
-        return context
+        val dataToHash = context.canonicalData ?: context.rawData
+        return context.copy(hash = hashService.hash(dataToHash, hashType))
     }
 }

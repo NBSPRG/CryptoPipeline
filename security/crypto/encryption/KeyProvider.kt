@@ -2,9 +2,13 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 
 object SecretKeyProvider {
-    fun generate(algorithm: String, keySize: Int): SecretKey {
-        val keyGen = KeyGenerator.getInstance(algorithm)
-        keyGen.init(keySize)
-        return keyGen.generateKey()
+    private val cache = mutableMapOf<String, SecretKey>()
+
+    fun getOrCreate(algorithm: String, keySize: Int): SecretKey {
+        return cache.getOrPut(algorithm) {
+            val keyGen = KeyGenerator.getInstance(algorithm)
+            keyGen.init(keySize)
+            keyGen.generateKey()
+        }
     }
 }

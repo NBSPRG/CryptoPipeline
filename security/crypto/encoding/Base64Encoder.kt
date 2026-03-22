@@ -6,4 +6,8 @@ class Base64Encoder: Encoder {
     override fun encode(bytes: ByteArray): String {
         return Base64.getEncoder().encodeToString(bytes)
     }
+
+    override fun decode(string: String): ByteArray {
+        return Base64.getDecoder().decode(string)
+    }
 }

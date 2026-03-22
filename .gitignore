@@ -1,6 +1,6 @@
 # Gradle/Kotlin build output
-build/
-out/
+/build/
+/out/
 *.class
 
 # Packaged artifacts
@@ -9,7 +9,7 @@ out/
 *.ear
 
 # Gradle local cache
-.gradle/
+/.gradle/
 
 # IDE/editor files
 .idea/

@@ -1,9 +1,9 @@
 class SignStep(
     private val signatureService: SignatureService,
     private val signer: Signer
-) {
+): CryptoStep {
     override fun process(context: CryptoContext): CryptoContext {
-        context.signature = signatureService.sign(context.hash!!, signer.type)
-        return context
+        val hash = requireNotNull(context.hash) { "Hash step must run before sign step" }
+        return context.copy(signature = signatureService.sign(hash, signer.type))
     }
 }
