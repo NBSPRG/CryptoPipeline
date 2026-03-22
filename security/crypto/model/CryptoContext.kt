@@ -1,4 +1,5 @@
 data class CryptoContext(
+    val inputData: Any,
     val rawData: String,
     val canonicalData: String? = null,
     val hash: ByteArray? = null,
@@ -8,7 +9,10 @@ data class CryptoContext(
 ) {
     companion object {
         fun <T> from(request: CryptoRequest<T>): CryptoContext {
-            return CryptoContext(rawData = request.data.toString())
+            return CryptoContext(
+                inputData = request.data as Any,
+                rawData = request.data.toString()
+            )
         }
     }
 }

@@ -7,7 +7,7 @@ class DecryptStep(
             "Encrypt step must run before decrypt step"
         }
 
-        val decrypted = encryptionService.decrypt(payload, EncrypterType.valueOf(algorithm.name))
+        val decrypted = encryptionService.decrypt(payload, algorithm.toEncrypterType())
         return context.copy(signature = decrypted)
     }
 }

@@ -1,5 +1,6 @@
 class StaticCryptoPipelineExecutor(
     private val config: CryptoConfig,
+    private val featureFlagService: FeatureFlagService,
     private val canonicalizerService: CanonicalizerService,
     private val hashService: HashService,
     private val signatureService: SignatureService,
@@ -12,7 +13,7 @@ class StaticCryptoPipelineExecutor(
     override fun <T> execute(request: CryptoRequest<T>): CryptoPipelineResponse {
 
         val canonicalData =
-            if (config.enableCanonicalization && request.canonicalizerType != null)
+            if (featureFlagService.isCanonicalizationEnabled() && request.canonicalizerType != null)
                 canonicalizerService.canonicalize(request.data, request.canonicalizerType)
             else request.data.toString()
 
@@ -20,13 +21,13 @@ class StaticCryptoPipelineExecutor(
         val hashEncoded = encoderService.encode(hash, config.defaultEncoder)
 
         val signature =
-            if (config.enableSigning)
+            if (featureFlagService.isSigningEnabled())
                 signatureService.sign(hash, config.defaultSigner.type)
             else hash
         val signatureEncoded = encoderService.encode(signature, config.defaultEncoder)
 
         val encrypted =
-            if (config.enableEncryption)
+            if (featureFlagService.isEncryptionEnabled())
                 encryptionService.encrypt(signature, config.defaultEncrypter)
             else signature
         val encryptedEncoded = encoderService.encode(encrypted, config.defaultEncoder)

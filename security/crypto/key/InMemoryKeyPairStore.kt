@@ -2,10 +2,10 @@ import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.util.concurrent.ConcurrentHashMap
 
-object InMemoryKeyPairStore {
+object InMemoryKeyPairStore : KeyPairStore {
     private val cache = ConcurrentHashMap<Algorithm, KeyPair>()
 
-    fun getOrCreate(algorithm: Algorithm): KeyPair {
+    override fun getOrCreate(algorithm: Algorithm): KeyPair {
         require(algorithm.keyType == KeyType.ASYMMETRIC) {
             "Key pairs are only supported for asymmetric algorithms"
         }

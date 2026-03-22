@@ -4,7 +4,4 @@ data class BillingEvent(
     val companyProduct: CompanyProduct,
     val duration: Duration,
     var hashV2: String?
-): CryptoPayload {
-    override fun canonicalForm(): String =
-        DefaultBillingEventCanonicalizer().canonicalize(this)
-}
+)

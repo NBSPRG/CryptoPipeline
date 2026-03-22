@@ -9,8 +9,6 @@ data class Payment(
 ): CryptoPayload {
 
     override fun canonicalForm(): String {
-        return """amount:${amount} |
-                  userId:${userId}
-        """.trimIndent()
+        return "amount:${amount}|userId:${userId}"
     }
 }

@@ -10,7 +10,7 @@ class EncryptionService(
 ) {
     fun encrypt(message: ByteArray, type: EncrypterType): ByteArray {
         val encrypter = encryptionFactory[type]
-        val algorithm = Algorithm.valueOf(type.name)
+        val algorithm = type.toAlgorithm()
         return when (type.keyType) {
             KeyType.SYMMETRIC -> {
                 val key: SecretKey = requireNotNull(secretKeyProvider) {
@@ -29,7 +29,7 @@ class EncryptionService(
 
     fun decrypt(message: ByteArray, type: EncrypterType): ByteArray {
         val encrypter = encryptionFactory[type]
-        val algorithm = Algorithm.valueOf(type.name)
+        val algorithm = type.toAlgorithm()
         return when (type.keyType) {
             KeyType.SYMMETRIC -> {
                 val key: SecretKey = requireNotNull(secretKeyProvider) {

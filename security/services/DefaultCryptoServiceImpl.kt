@@ -23,7 +23,7 @@ class DefaultCryptoService(
     override fun <T> sign(request: CryptoRequest<T>): SignResponse {
         val canonicalizedData = canonicalizerService.canonicalize(request.data, request.canonicalizerType)
         val hashedData = hashService.hash(canonicalizedData, request.hashType)
-        val signingAlgorithm = Algorithm.valueOf(request.encrypterType.name)
+        val signingAlgorithm = request.encrypterType.toAlgorithm()
         val signedDocument = signatureService.sign(hashedData, signingAlgorithm)
         val encodedData = encoderService.encode(signedDocument, request.encoderType)
 

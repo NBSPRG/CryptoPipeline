@@ -147,13 +147,16 @@ fun main() {
         defaultHash = HashType.SHA_256,
         defaultEncrypter = EncrypterType.AES,
         defaultEncoder = EncoderType.BASE64,
-        defaultSigner = signer,
-        enableSigning = true,
-        enableEncryption = true,
-        enableCanonicalization = true
+        defaultSigner = signer
     )
-    val cryptoPipelineService = CryptoPipelineService(
+    val featureFlagService = StaticFeatureFlagService(
+        canonicalizationEnabled = true,
+        signingEnabled = true,
+        encryptionEnabled = true
+    )
+    val cryptoPipelineExecutor = StaticCryptoPipelineExecutor(
         config = pipelineConfig,
+        featureFlagService = featureFlagService,
         canonicalizerService = canonicalizerService,
         hashService = hashService,
         signatureService = signatureService,
@@ -223,8 +226,8 @@ fun main() {
     println("sign.encoded    : ${signResponse.encoded}")
     println("encrypt.encoded : ${encryptResponse.encoded}")
 
-    println("\n[6] CryptoPipelineService")
-    val pipelineResponse = cryptoPipelineService.secure(requestForHash)
+    println("\n[6] StaticCryptoPipelineExecutor")
+    val pipelineResponse = cryptoPipelineExecutor.execute(requestForHash)
     println("pipeline.hash   : ${pipelineResponse.hash.encoded}")
     println("pipeline.sign   : ${pipelineResponse.sign.encoded}")
     println("pipeline.encrypt: ${pipelineResponse.encrypt.encoded}")

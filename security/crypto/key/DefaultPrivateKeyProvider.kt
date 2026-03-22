@@ -1,7 +1,9 @@
 import java.security.PrivateKey
 
-class DefaultPrivateKeyProvider : PrivateKeyProvider {
+class DefaultPrivateKeyProvider(
+    private val keyPairStore: KeyPairStore = InMemoryKeyPairStore
+) : PrivateKeyProvider {
     override fun getOrCreate(algorithm: Algorithm): PrivateKey {
-        return InMemoryKeyPairStore.getOrCreate(algorithm).private
+        return keyPairStore.getOrCreate(algorithm).private
     }
 }

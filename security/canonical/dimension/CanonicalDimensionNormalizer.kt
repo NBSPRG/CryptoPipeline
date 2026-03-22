@@ -3,16 +3,20 @@ class CanonicalDimensionNormalizer: DimensionNormalizer {
         val sb = StringBuilder()
         sb.append("{")
 
-        val sortedKeys = input.keys
-                        .map { it.trim().uppercase() }
-                        .sorted()
-        
+        val normalizedKeys = input.keys.groupBy { it.trim().uppercase() }
+        val collisions = normalizedKeys.filterValues { it.size > 1 }
+        require(collisions.isEmpty()) {
+            "Dimension key collision after normalization: ${collisions.keys.sorted().joinToString(", ")}"
+        }
+
+        val sortedKeys = normalizedKeys.keys.sorted()
+
         for(key in sortedKeys) {
-            val originalKey = input.keys.first { it.trim().uppercase() == key }
+            val originalKey = normalizedKeys.getValue(key).single()
             val value_ = input[originalKey]
-                         ?.trim()
-                         ?.uppercase()
-                         ?: "NULL"
+                ?.trim()
+                ?.uppercase()
+                ?: "NULL"
 
             sb.append("$key:$value_|")
         }

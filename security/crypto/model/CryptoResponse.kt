@@ -38,7 +38,7 @@ data class SignResponse(
             return SignResponse(
                 raw = requireNotNull(context.signature) { "Signature result is missing from crypto context" },
                 encoded = context.encoded,
-                signatureAlgorithm = Algorithm.valueOf(request.encrypterType.name),
+                signatureAlgorithm = request.encrypterType.toAlgorithm(),
                 keyId = request.keyId,
                 version = request.version,
                 metadata = request.metadata

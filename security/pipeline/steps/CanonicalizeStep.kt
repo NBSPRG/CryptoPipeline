@@ -4,7 +4,7 @@ class CanonicalizeStep(
 ): CryptoStep {
     override fun process(context: CryptoContext): CryptoContext {
         return context.copy(
-            canonicalData = canonicalizerService.canonicalize(context.rawData, canonicalizerType)
+            canonicalData = canonicalizerService.canonicalize(context.inputData, canonicalizerType)
         )
     }
 }

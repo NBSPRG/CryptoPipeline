@@ -1,7 +1,9 @@
 import java.security.PublicKey
 
-class DefaultPublicKeyProvider : PublicKeyProvider {
+class DefaultPublicKeyProvider(
+    private val keyPairStore: KeyPairStore = InMemoryKeyPairStore
+) : PublicKeyProvider {
     override fun getOrCreate(algorithm: Algorithm): PublicKey {
-        return InMemoryKeyPairStore.getOrCreate(algorithm).public
+        return keyPairStore.getOrCreate(algorithm).public
     }
 }
