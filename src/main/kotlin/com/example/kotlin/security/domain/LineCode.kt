@@ -1,0 +1,9 @@
+package com.example.kotlin.security
+
+enum class LineCode {
+    LATE_PAYMENT_FEE,
+    SERVICE_FEE,
+    FREELANCER_SERVICE_FEE,
+    CONTRACTOR_SERVICE_FEE,
+    GLOBAL_PAYROLL_FEE
+}

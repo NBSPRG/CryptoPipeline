@@ -10,6 +10,7 @@
 
 # Gradle local cache
 /.gradle/
+/.gradle-user/
 
 # IDE/editor files
 .idea/
@@ -27,4 +28,4 @@ Thumbs.db
 *.log
 
 # Local config
-/resources/config.yml
+/src/main/resources/config.yml

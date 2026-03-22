@@ -1,0 +1,13 @@
+package com.example.kotlin.security
+
+class CanonicalizerFactory(
+    canonicalizer: List<Canonicalizer<*>>
+) {
+    private val registry: Map<CanonicalizerType, Canonicalizer<*>> =
+        canonicalizer.associateBy { it.type }
+    
+    operator fun get(type: CanonicalizerType): Canonicalizer<*> {
+        return registry[type]
+            ?: error("No canonicalizer for type: $type")
+    }
+}
