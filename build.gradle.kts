@@ -18,6 +18,8 @@ kotlin {
 sourceSets {
     named("main") {
         kotlin.srcDirs(".")
+        resources.srcDirs("resources")
+        kotlin.exclude("test/**")
     }
     named("test") {
         kotlin.srcDirs("test")
@@ -30,4 +32,8 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.named("compileKotlin") {
+    dependsOn(tasks.named("processResources"))
 }

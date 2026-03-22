@@ -1,11 +1,9 @@
-class StaticFeatureFlagService(
-    private val canonicalizationEnabled: Boolean = true,
-    private val signingEnabled: Boolean = true,
-    private val encryptionEnabled: Boolean = true
-) : FeatureFlagService {
-    override fun isCanonicalizationEnabled(): Boolean = canonicalizationEnabled
+class StaticFeatureFlagService : FeatureFlagService {
+    override val source: String = "StaticFallback"
 
-    override fun isSigningEnabled(): Boolean = signingEnabled
+    override fun isCanonicalizationEnabled(): Boolean = true
 
-    override fun isEncryptionEnabled(): Boolean = encryptionEnabled
+    override fun isSigningEnabled(): Boolean = true
+
+    override fun isEncryptionEnabled(): Boolean = true
 }

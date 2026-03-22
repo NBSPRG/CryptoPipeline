@@ -149,11 +149,17 @@ fun main() {
         defaultEncoder = EncoderType.BASE64,
         defaultSigner = signer
     )
-    val featureFlagService = StaticFeatureFlagService(
-        canonicalizationEnabled = true,
-        signingEnabled = true,
-        encryptionEnabled = true
-    )
+    val featureFlagService = FeatureFlagServiceFactory.create()
+    val canonicalizationEnabled = featureFlagService.isCanonicalizationEnabled()
+    val signingEnabled = featureFlagService.isSigningEnabled()
+    val encryptionEnabled = featureFlagService.isEncryptionEnabled()
+
+    println("\n=== FEATURE FLAGS ===")
+    println("source                  : ${featureFlagService.source}")
+    println("enable-canonicalization : $canonicalizationEnabled")
+    println("enable-signing          : $signingEnabled")
+    println("enable-encryption       : $encryptionEnabled")
+
     val cryptoPipelineExecutor = StaticCryptoPipelineExecutor(
         config = pipelineConfig,
         featureFlagService = featureFlagService,
