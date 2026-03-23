@@ -168,7 +168,7 @@ class CryptoBeanConfiguration {
             encoderService = encoderService
         )
 
-    @Bean("staticPipelineExecutor")
+    @Bean("staticCryptoPipelineExecutor")
     fun staticPipelineExecutor(
         cryptoConfig: CryptoConfig,
         featureFlagService: FeatureFlagService,
@@ -188,7 +188,7 @@ class CryptoBeanConfiguration {
             encoderService = encoderService
         )
 
-    @Bean("dynamicPipelineExecutor")
+    @Bean("dynamicCryptoPipelineExecutor")
     fun dynamicPipelineExecutor(
         canonicalizerService: CanonicalizerService,
         hashService: HashService,

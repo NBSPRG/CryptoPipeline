@@ -21,7 +21,7 @@ data class FeatureFlagConfig(
             )
         }
 
-        fun load(resourceName: String = "config.yml"): FeatureFlagConfig? {
+        fun load(resourceName: String = "application.yml"): FeatureFlagConfig? {
             val stream = FeatureFlagConfig::class.java.classLoader
                 .getResourceAsStream(resourceName)
                 ?: return null
@@ -55,7 +55,7 @@ data class FeatureFlagConfig(
         }
 
         fun resolve(
-            resourceName: String = "config.yml",
+            resourceName: String = "application.yml",
             serverKeyEnv: String = "SERVER_KEY",
             userIdEnv: String = "USER_ID"
         ): FeatureFlagConfig? {

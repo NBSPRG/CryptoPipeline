@@ -12,7 +12,7 @@ object FeatureFlagServiceFactory {
     private const val SERVER_SDK_KEY_ENV = "SERVER_KEY"
     private const val USER_ID_ENV = "USER_ID"
     private const val DEFAULT_USER_ID = "crypto-pipeline-service"
-    private const val CONFIG_FILE_NAME = "config.yml"
+    private const val CONFIG_FILE_NAME = "application.yml"
     private const val INIT_TIMEOUT_MS = 10_000L
     private const val INIT_POLL_INTERVAL_TIME_MS = 100L
 
