@@ -1,4 +1,4 @@
-package com.example.kotlin
+package com.example.kotlin.controller
 
 import com.example.kotlin.security.CryptoRequest
 import com.example.kotlin.security.CryptoPipelineResponse
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/pipeline")
-class PipelineController(
+class CryptoController(
     @param:Qualifier("dynamicCryptoPipelineExecutor") private val executor: PipelineExecutor,
     private val bulkyExecutor: BulkyPipelineExecutor
 ) {
