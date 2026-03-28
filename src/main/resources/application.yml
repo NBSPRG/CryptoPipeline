@@ -10,8 +10,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.H2Dialect
     show-sql: true
-
+    database-platform: org.hibernate.dialect.H2Dialect
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
 
 server_key: "${DVC_SERVER_KEY:}"
 user_id: "chandan_user_id_1"
